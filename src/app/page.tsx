@@ -1,59 +1,162 @@
 "use client";
 
 import {
+  ArrowRight,
   ArrowUpRight,
+  BookOpen,
+  Boxes,
   Code2,
   Database,
-  ExternalLink,
-  GitPullRequest,
+  GitBranch,
   GraduationCap,
+  Layers3,
   Mail,
   MapPin,
   Menu,
+  Network,
   Server,
   ShieldCheck,
+  Sparkles,
+  Terminal,
   X,
+  Zap,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 const skills = {
-  Backend: [
+  "Backend Development": [
     "Java",
     "Spring Boot",
+    "Spring MVC",
     "REST APIs",
     "Hibernate",
+    "Spring Data JPA",
     "JPA",
     "Microservices",
   ],
-  Database: ["MySQL", "SQL", "Redis"],
-  Security: ["Spring Security", "JWT Authentication"],
-  "DevOps & Tools": [
-    "Docker",
+  "System Design": [
+    "LLD",
+    "System Design",
+    "OOP",
+    "SOLID Principles",
+    "Design Patterns",
+    "Scalable Architecture",
+    "API Design",
+  ],
+  Database: [
+    "MySQL",
+    "SQL",
+    "Query Optimization",
+    "Database Design",
+    "Redis",
+    "HikariCP",
+  ],
+  Security: [
+    "Spring Security",
+    "JWT Authentication",
+    "Role-Based Authorization",
+    "API Security",
+  ],
+  "DevOps & Engineering": [
     "Git",
+    "GitHub",
     "Jenkins",
     "SonarQube",
     "CI/CD",
-    "ELK",
+    "Docker",
+    "Maven",
   ],
-  Testing: ["JUnit", "JDBC", "Log4j", "OOP"],
+  "Production & Observability": [
+    "ELK Stack",
+    "Log Analysis",
+    "Root Cause Analysis",
+    "Performance Tuning",
+    "Tomcat",
+    "Production Debugging",
+  ],
+  "Testing & Quality": [
+    "JUnit",
+    "Integration Testing",
+    "REST API Testing",
+    "Code Review",
+    "Clean Code",
+  ],
+  "Problem Solving": [
+    "Data Structures",
+    "Algorithms",
+    "LeetCode",
+    "Scaler",
+    "Problem Solving",
+  ],
 };
 
 const projects = [
   {
-    title: "E-commerce Backend System",
+    featured: true,
+    title: "ShopEase",
+    subtitle: "E-commerce Backend Platform",
     description:
-      "A scalable Spring Boot backend with authentication, authorization, product, cart and order management.",
+      "A scalable e-commerce backend built with Spring Boot using layered architecture, secure authentication, RESTful APIs, relational persistence, caching and performance-focused backend engineering.",
+    highlights: [
+      "JWT authentication and role-based authorization",
+      "User, product, cart and order management",
+      "JPA/Hibernate-based persistence",
+      "Pagination and filtering",
+      "Redis caching",
+      "SQL query optimization",
+      "Layered backend architecture",
+      "Secure REST API design",
+    ],
+    tech: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "JWT",
+      "REST APIs",
+      "MySQL",
+      "JPA/Hibernate",
+      "Redis",
+    ],
+    github: "https://github.com/sudhir-tech/ShopEase",
+    icon: ShoppingCartIcon,
+  },
+  {
+    title: "E-commerce Backend System",
+    subtitle: "Spring Boot Backend",
+    description:
+      "A backend-focused e-commerce application designed around clean layering, secure APIs, database persistence and core commerce workflows.",
+    highlights: [
+      "Authentication and authorization",
+      "Product and cart workflows",
+      "Order management",
+      "REST API development",
+      "Database persistence",
+    ],
     tech: ["Java", "Spring Boot", "MySQL", "JPA", "Redis"],
     github: "https://github.com/sudhir-tech/ecommerce-backend-springboot",
-    icon: ShoppingBagIcon,
+    icon: ShoppingCartIcon,
   },
   {
     title: "Library Management System",
+    subtitle: "Java Backend Application",
     description:
-      "A Spring Boot application covering book inventory, issue, return and purchase workflows with secured REST APIs.",
-    tech: ["Java", "Spring Boot", "Spring Security", "JUnit", "SonarQube"],
+      "A Spring Boot application for managing books, inventory, issue and return workflows through secured REST APIs.",
+    highlights: [
+      "RESTful API design",
+      "Spring Security",
+      "Database persistence",
+      "JUnit testing",
+      "Code quality with SonarQube",
+    ],
+    tech: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "JUnit",
+      "SonarQube",
+    ],
     github: "https://github.com/sudhir-tech/Library-management-system",
-    icon: BookIcon,
+    icon: BookOpen,
   },
 ];
 
@@ -62,32 +165,58 @@ const experience = [
     company: "DXC Technology",
     role: "Software Engineer — Java",
     period: "Feb 2022 — Sep 2024",
+    description:
+      "Worked on enterprise Java applications with a focus on backend development, production reliability, debugging and continuous improvement.",
     points: [
-      "Developed backend applications using Java, Spring Boot, Hibernate, REST APIs, SQL, JWT Authentication and Redis.",
-      "Implemented features, optimized REST APIs and SQL queries, and improved application performance.",
-      "Worked with Git, Jenkins, SonarQube and CI/CD pipelines in an Agile environment.",
-      "Performed root cause analysis, resolved production incidents and supported business-critical applications.",
-      "Monitored application health and investigated issues using the ELK Stack.",
+      "Developed and maintained Java-based backend applications using Java, Spring Boot, Hibernate, REST APIs and SQL.",
+      "Implemented application features and REST APIs while following layered architecture and maintainable coding practices.",
+      "Worked with relational databases, JPA/Hibernate and SQL query optimization to improve application performance.",
+      "Contributed to CI/CD workflows using Git, Jenkins and SonarQube within an Agile development environment.",
+      "Performed root cause analysis, production debugging and permanent fixes for business-critical application issues.",
+      "Used ELK Stack logs and application monitoring to identify failures, investigate production issues and reduce troubleshooting time.",
+      "Collaborated with development, QA, DevOps and business teams throughout the software development lifecycle.",
     ],
   },
   {
     company: "Quotus Software Solutions Pvt. Ltd.",
     role: "Software Trainee",
     period: "Oct 2020 — Jan 2021",
+    description:
+      "Built foundational experience in Java development, databases and software engineering practices.",
     points: [
       "Received hands-on training in Java, SQL, JDBC and Object-Oriented Programming.",
       "Assisted with developing and testing Java-based applications.",
+      "Worked with database connectivity and application-level programming concepts.",
       "Gained practical exposure to SDLC and collaborative software development.",
     ],
   },
 ];
 
-function ShoppingBagIcon() {
-  return <span className="text-2xl">🛒</span>;
-}
+const engineeringPrinciples = [
+  {
+    icon: Layers3,
+    title: "Clean Architecture",
+    text: "Layered design, separation of concerns and maintainable backend components.",
+  },
+  {
+    icon: Network,
+    title: "System Design",
+    text: "Thinking about scalability, APIs, databases, caching and service boundaries.",
+  },
+  {
+    icon: Zap,
+    title: "Performance",
+    text: "Query optimization, pagination, caching, connection pools and efficient APIs.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Security",
+    text: "Authentication, authorization and secure REST API design.",
+  },
+];
 
-function BookIcon() {
-  return <span className="text-2xl">📚</span>;
+function ShoppingCartIcon() {
+  return <Boxes size={22} />;
 }
 
 export default function Home() {
@@ -95,34 +224,42 @@ export default function Home() {
 
   const closeMenu = () => setMobileMenu(false);
 
+  const navigation = [
+    ["About", "about"],
+    ["Experience", "experience"],
+    ["Projects", "projects"],
+    ["Skills", "skills"],
+    ["Contact", "contact"],
+  ];
+
   return (
-    <main className="min-h-screen bg-[#07090d] text-white">
+    <main className="min-h-screen overflow-x-hidden bg-[#05070a] text-white selection:bg-cyan-400/30">
+      {/* Background */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-[8%] top-[15%] h-[420px] w-[420px] rounded-full bg-cyan-500/[0.035] blur-3xl" />
+        <div className="absolute right-[5%] top-[35%] h-[500px] w-[500px] rounded-full bg-blue-500/[0.025] blur-3xl" />
+        <div className="absolute bottom-[5%] left-[30%] h-[400px] w-[400px] rounded-full bg-cyan-400/[0.02] blur-3xl" />
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#07090d]/85 backdrop-blur-xl">
+      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/[0.08] bg-[#05070a]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
           <a
             href="#home"
-            className="font-mono text-sm font-bold tracking-tight"
+            className="font-mono text-base font-bold tracking-tight"
           >
-            <span className="text-cyan-400">sudo</span>
-            hir<span className="text-white/40">.</span>
+            <span className="text-cyan-400">S</span>
+            udhir<span className="text-white/30">.</span>
           </a>
 
           <div className="hidden items-center gap-7 md:flex">
-            {[
-              "About",
-              "Experience",
-              "Projects",
-              "Open Source",
-              "Skills",
-              "Contact",
-            ].map((item) => (
+            {navigation.map(([label, id]) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="text-sm text-white/55 transition hover:text-white"
+                key={id}
+                href={`#${id}`}
+                className="text-sm text-white/45 transition hover:text-white"
               >
-                {item}
+                {label}
               </a>
             ))}
 
@@ -130,7 +267,7 @@ export default function Home() {
               href="https://github.com/sudhir-tech"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/15 p-2 transition hover:border-cyan-400/50 hover:text-cyan-400"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/55 transition hover:border-cyan-400/40 hover:text-cyan-400"
               aria-label="GitHub"
             >
               <Code2 size={16} />
@@ -138,7 +275,7 @@ export default function Home() {
           </div>
 
           <button
-            className="rounded-lg border border-white/10 p-2 md:hidden"
+            className="rounded-lg border border-white/10 p-2 text-white/70 md:hidden"
             onClick={() => setMobileMenu(!mobileMenu)}
             aria-label="Toggle menu"
           >
@@ -147,23 +284,16 @@ export default function Home() {
         </div>
 
         {mobileMenu && (
-          <div className="border-t border-white/10 bg-[#07090d] px-5 py-5 md:hidden">
+          <div className="border-t border-white/[0.08] bg-[#05070a] px-5 py-6 md:hidden">
             <div className="flex flex-col gap-5">
-              {[
-                "About",
-                "Experience",
-                "Projects",
-                "Open Source",
-                "Skills",
-                "Contact",
-              ].map((item) => (
+              {navigation.map(([label, id]) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(" ", "-")}`}
+                  key={id}
+                  href={`#${id}`}
                   onClick={closeMenu}
-                  className="text-sm text-white/70"
+                  className="text-sm text-white/65"
                 >
-                  {item}
+                  {label}
                 </a>
               ))}
             </div>
@@ -174,26 +304,35 @@ export default function Home() {
       {/* Hero */}
       <section
         id="home"
-        className="relative flex min-h-screen items-center overflow-hidden px-5 pt-16"
+        className="relative flex min-h-screen items-center px-5 pb-20 pt-16"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(34,211,238,0.08),transparent_32%),radial-gradient(circle_at_20%_70%,rgba(59,130,246,0.06),transparent_30%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(34,211,238,0.09),transparent_28%),radial-gradient(circle_at_15%_75%,rgba(59,130,246,0.06),transparent_30%)]" />
 
-        <div className="relative mx-auto grid w-full max-w-6xl gap-14 py-24 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
+        <div className="relative mx-auto grid w-full max-w-6xl gap-14 py-24 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
           <div>
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/5 px-3 py-1.5 font-mono text-xs text-cyan-300">
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/[0.05] px-3 py-1.5 font-mono text-xs text-cyan-300">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
               JAVA BACKEND DEVELOPER
             </div>
 
-            <h1 className="max-w-4xl text-5xl font-bold tracking-[-0.04em] sm:text-6xl lg:text-7xl">
-              Sudhir
-              <span className="text-white/35"> Sahoo</span>
+            {/* Name */}
+            <h1 className="max-w-4xl text-5xl font-bold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-8xl">
+              <span className="text-white">Sudhir</span>{" "}
+              <span className="bg-gradient-to-r from-white via-white/75 to-white/30 bg-clip-text text-transparent">
+                Sahoo
+              </span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/55 sm:text-xl">
-              Software Engineer focused on building scalable backend
-              applications with Java, Spring Boot, REST APIs, databases and
-              modern engineering practices.
+            {/* Main tagline */}
+            <h2 className="mt-7 max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.04em] text-white/75 sm:text-4xl lg:text-5xl">
+              Building Backend Systems{" "}
+              <span className="text-cyan-400">That Scale.</span>
+            </h2>
+
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/45 sm:text-xl">
+              Java-focused Software Engineer building scalable backend
+              applications with Spring Boot, REST APIs, databases, security,
+              system design and performance-focused engineering.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
@@ -201,7 +340,7 @@ export default function Home() {
                 href="#projects"
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-300"
               >
-                View Projects
+                Explore Projects
                 <ArrowUpRight
                   size={16}
                   className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -212,25 +351,27 @@ export default function Home() {
                 href="https://github.com/sudhir-tech"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/30 hover:text-white"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/75 transition hover:border-cyan-400/40 hover:text-white"
               >
                 <Code2 size={16} />
                 GitHub
               </a>
             </div>
 
-            <div className="mt-12 flex flex-wrap gap-2">
+            <div className="mt-10 flex flex-wrap gap-2">
               {[
                 "Java",
                 "Spring Boot",
-                "Microservices",
+                "System Design",
+                "REST APIs",
                 "SQL",
                 "Redis",
-                "Docker",
+                "DSA",
+                "LLD",
               ].map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-white/50"
+                  className="rounded-full border border-white/[0.09] bg-white/[0.025] px-3 py-1.5 font-mono text-xs text-white/45"
                 >
                   {tech}
                 </span>
@@ -238,52 +379,60 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Terminal / engineering card */}
           <div className="relative hidden lg:block">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 shadow-2xl shadow-cyan-950/20">
-              <div className="mb-5 flex items-center gap-2 border-b border-white/10 pb-4">
+            <div className="absolute -inset-8 rounded-full bg-cyan-400/[0.035] blur-3xl" />
+
+            <div className="relative overflow-hidden rounded-2xl border border-white/[0.1] bg-[#0a0e13]/90 p-5 shadow-2xl shadow-black/40">
+              <div className="mb-5 flex items-center gap-2 border-b border-white/[0.08] pb-4">
                 <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
 
-                <span className="ml-2 font-mono text-xs text-white/30">
-                  sudhir@portfolio
+                <span className="ml-2 font-mono text-xs text-white/25">
+                  sudhir@engineering
                 </span>
               </div>
 
-              <div className="space-y-3 font-mono text-sm">
-                <p>
-                  <span className="text-cyan-400">$</span>{" "}
-                  <span className="text-white/70">whoami</span>
-                </p>
+              <div className="space-y-4 font-mono text-sm">
+                <TerminalLine command="whoami" value="Sudhir Sahoo" />
 
-                <p className="pl-5 text-white/45">
-                  Java Backend Developer
-                </p>
+                <TerminalLine
+                  command="role"
+                  value="Java Backend Developer"
+                />
 
-                <p className="pt-3">
-                  <span className="text-cyan-400">$</span>{" "}
-                  <span className="text-white/70">focus</span>
-                </p>
+                <TerminalLine
+                  command="stack"
+                  value="Java · Spring Boot · SQL"
+                />
 
-                <p className="pl-5 text-white/45">
-                  Java · Spring Boot · REST · SQL
-                </p>
+                <TerminalLine
+                  command="architecture"
+                  value="REST · Microservices · LLD"
+                />
 
-                <p className="pt-3">
-                  <span className="text-cyan-400">$</span>{" "}
-                  <span className="text-white/70">problems-solved</span>
-                </p>
+                <TerminalLine
+                  command="system-design"
+                  value="Scalability · APIs · Caching"
+                />
 
-                <p className="pl-5 text-cyan-300">500+</p>
+                <TerminalLine
+                  command="problem-solving"
+                  value="500+ DSA Problems"
+                  accent
+                />
 
-                <p className="pt-3">
-                  <span className="text-cyan-400">$</span>{" "}
-                  <span className="text-white/70">open-source</span>
-                </p>
+                <div className="mt-5 border-t border-white/[0.08] pt-5">
+                  <div className="flex items-center gap-2 text-xs text-white/30">
+                    <span className="text-cyan-400">●</span>
+                    currently building
+                  </div>
 
-                <p className="pl-5 text-green-300">
-                  Microcks · PR #2275
-                </p>
+                  <p className="mt-2 text-sm text-cyan-300">
+                    scalable software systems
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -291,61 +440,79 @@ export default function Home() {
       </section>
 
       {/* Highlights */}
-      <section className="border-y border-white/10 bg-white/[0.015]">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-white/10 md:grid-cols-4">
+      <section className="border-y border-white/[0.08] bg-white/[0.012]">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-white/[0.08] md:grid-cols-4">
           {[
             ["3+", "Years Experience"],
             ["500+", "DSA Problems"],
             ["Java", "Backend Focus"],
-            ["Open Source", "Microcks"],
+            ["ShopEase", "Featured Project"],
           ].map(([value, label]) => (
-            <div key={label} className="px-5 py-7 text-center">
-              <p className="text-xl font-bold">{value}</p>
-              <p className="mt-1 text-xs text-white/40">{label}</p>
+            <div key={label} className="px-5 py-8 text-center">
+              <p className="text-xl font-bold tracking-tight">{value}</p>
+              <p className="mt-1 text-xs text-white/35">{label}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* About */}
-      <section id="about" className="mx-auto max-w-6xl px-5 py-24">
+      <section id="about" className="mx-auto max-w-6xl px-5 py-28">
         <SectionHeading
           eyebrow="01 / ABOUT"
-          title="Building with purpose."
+          title="Engineer first. Always learning."
+          description="A backend-focused engineer with a strong interest in architecture, problem solving and building software that is reliable in the real world."
         />
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_.8fr]">
-          <p className="max-w-3xl text-lg leading-8 text-white/55">
-            I&apos;m a software engineer with professional experience
-            developing Java-based backend applications. My work centers around
-            Spring Boot, REST APIs, databases, security and performance, with a
-            strong focus on writing maintainable and scalable software.
-          </p>
+        <div className="grid gap-10 lg:grid-cols-[1fr_.9fr]">
+          <div>
+            <p className="text-lg leading-8 text-white/50">
+              My core experience is in Java backend development, where I work
+              across APIs, databases, authentication, application performance
+              and production debugging. I enjoy understanding how systems work
+              underneath the surface rather than only making individual
+              features function.
+            </p>
+
+            <p className="mt-6 text-lg leading-8 text-white/50">
+              Alongside professional experience, I&apos;ve been strengthening
+              my foundation in Data Structures & Algorithms, Low-Level Design
+              and System Design while building projects that bring those
+              concepts into practical software.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {[
+                "Backend Engineering",
+                "System Design",
+                "Problem Solving",
+                "Performance",
+                "Clean Code",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.025] px-3 py-2 text-xs text-white/50"
+                >
+                  <span className="h-1 w-1 rounded-full bg-cyan-400" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <InfoCard
-              icon={<Server size={18} />}
-              title="Backend"
-              text="Java & Spring Boot"
-            />
+            {engineeringPrinciples.map((item) => {
+              const Icon = item.icon;
 
-            <InfoCard
-              icon={<Database size={18} />}
-              title="Data"
-              text="SQL, MySQL & Redis"
-            />
-
-            <InfoCard
-              icon={<ShieldCheck size={18} />}
-              title="Security"
-              text="Spring Security & JWT"
-            />
-
-            <InfoCard
-              icon={<Code2 size={18} />}
-              title="Engineering"
-              text="DSA & LLD"
-            />
+              return (
+                <InfoCard
+                  key={item.title}
+                  icon={<Icon size={18} />}
+                  title={item.title}
+                  text={item.text}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -353,38 +520,47 @@ export default function Home() {
       {/* Experience */}
       <section
         id="experience"
-        className="border-y border-white/10 bg-white/[0.015]"
+        className="border-y border-white/[0.08] bg-white/[0.012]"
       >
-        <div className="mx-auto max-w-6xl px-5 py-24">
+        <div className="mx-auto max-w-6xl px-5 py-28">
           <SectionHeading
             eyebrow="02 / EXPERIENCE"
-            title="Where I&apos;ve worked."
+            title="Experience that shaped how I build."
+            description="Professional experience across Java development, enterprise applications, production debugging and engineering collaboration."
           />
 
-          <div className="space-y-10">
+          <div className="space-y-12">
             {experience.map((job) => (
               <div
                 key={job.company}
-                className="grid gap-5 border-l border-cyan-400/30 pl-6 md:grid-cols-[220px_1fr] md:border-l-0 md:pl-0"
+                className="relative grid gap-6 md:grid-cols-[230px_1fr]"
               >
                 <div>
                   <p className="font-mono text-xs text-cyan-400">
                     {job.period}
                   </p>
 
-                  <p className="mt-2 font-semibold">{job.company}</p>
+                  <p className="mt-2 font-semibold text-white">
+                    {job.company}
+                  </p>
                 </div>
 
-                <div className="md:border-l md:border-white/10 md:pl-8">
+                <div className="relative border-l border-white/[0.1] pl-7 md:pl-9">
+                  <div className="absolute -left-[5px] top-1 h-2 w-2 rounded-full bg-cyan-400" />
+
                   <h3 className="text-xl font-semibold">{job.role}</h3>
 
-                  <ul className="mt-5 space-y-3">
+                  <p className="mt-3 max-w-2xl leading-7 text-white/40">
+                    {job.description}
+                  </p>
+
+                  <ul className="mt-6 space-y-3">
                     {job.points.map((point) => (
                       <li
                         key={point}
                         className="flex gap-3 text-sm leading-6 text-white/50"
                       >
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-cyan-400" />
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-cyan-400/70" />
                         {point}
                       </li>
                     ))}
@@ -397,197 +573,180 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section
-        id="projects"
-        className="mx-auto max-w-6xl px-5 py-24"
-      >
+      <section id="projects" className="mx-auto max-w-6xl px-5 py-28">
         <SectionHeading
           eyebrow="03 / PROJECTS"
-          title="Things I&apos;ve built."
+          title="Software I&apos;ve built."
+          description="Projects where backend engineering, security, databases and performance come together."
         />
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="space-y-5">
           {projects.map((project) => {
             const Icon = project.icon;
 
             return (
               <article
                 key={project.title}
-                className="group rounded-2xl border border-white/10 bg-white/[0.025] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/30"
+                className={`group relative overflow-hidden rounded-3xl border p-7 transition duration-300 md:p-9 ${
+                  project.featured
+                    ? "border-cyan-400/20 bg-cyan-400/[0.025] hover:border-cyan-400/40"
+                    : "border-white/[0.09] bg-white/[0.018] hover:border-white/20"
+                }`}
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
-                    <Icon />
+                {project.featured && (
+                  <div className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/[0.06] px-3 py-1.5 font-mono text-[10px] text-cyan-300">
+                    <Sparkles size={11} />
+                    FEATURED
+                  </div>
+                )}
+
+                <div className="grid gap-8 lg:grid-cols-[1fr_.85fr]">
+                  <div>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-cyan-400">
+                      <Icon size={22} />
+                    </div>
+
+                    <p className="mt-6 font-mono text-xs text-cyan-400/80">
+                      {project.subtitle}
+                    </p>
+
+                    <h3 className="mt-2 text-3xl font-bold tracking-tight">
+                      {project.title}
+                    </h3>
+
+                    <p className="mt-4 max-w-2xl leading-7 text-white/45">
+                      {project.description}
+                    </p>
+
+                    <div className="mt-7 flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-white/10 bg-white/[0.025] px-2.5 py-1.5 font-mono text-[11px] text-white/45"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2.5 text-sm font-medium text-white/70 transition hover:border-cyan-400/30 hover:text-cyan-300"
+                    >
+                      View repository
+                      <ArrowUpRight size={15} />
+                    </a>
                   </div>
 
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-white/10 p-2 text-white/45 transition hover:border-white/25 hover:text-white"
-                    aria-label={`View ${project.title} on GitHub`}
-                  >
-                    <ExternalLink size={16} />
-                  </a>
+                  <div className="rounded-2xl border border-white/[0.08] bg-black/20 p-6">
+                    <div className="mb-5 flex items-center gap-2">
+                      <GitBranch size={16} className="text-cyan-400" />
+                      <span className="font-mono text-xs text-white/35">
+                        engineering highlights
+                      </span>
+                    </div>
+
+                    <div className="space-y-4">
+                      {project.highlights.map((highlight) => (
+                        <div
+                          key={highlight}
+                          className="flex gap-3 text-sm leading-6 text-white/50"
+                        >
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400/70" />
+                          {highlight}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-
-                <h3 className="mt-7 text-2xl font-semibold">
-                  {project.title}
-                </h3>
-
-                <p className="mt-3 leading-7 text-white/45">
-                  {project.description}
-                </p>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full bg-white/[0.05] px-2.5 py-1 font-mono text-[11px] text-white/45"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-7 inline-flex items-center gap-2 text-sm font-medium text-cyan-400"
-                >
-                  View repository
-                  <ArrowUpRight size={15} />
-                </a>
               </article>
             );
           })}
         </div>
       </section>
 
-      {/* Open Source */}
-      <section
-        id="open-source"
-        className="border-y border-white/10 bg-white/[0.015]"
-      >
-        <div className="mx-auto max-w-6xl px-5 py-24">
+      {/* Engineering */}
+      <section className="border-y border-white/[0.08] bg-white/[0.012]">
+        <div className="mx-auto max-w-6xl px-5 py-28">
           <SectionHeading
-            eyebrow="04 / OPEN SOURCE"
-            title="Contributing beyond my own code."
+            eyebrow="04 / ENGINEERING"
+            title="How I think about software."
+            description="Beyond frameworks and syntax — the engineering concepts I actively work on and study."
           />
 
-          <div className="overflow-hidden rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.025]">
-            <div className="grid lg:grid-cols-[1fr_260px]">
-              <div className="p-7 md:p-9">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/5">
-                    <GitPullRequest className="text-cyan-400" />
-                  </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <EngineeringCard
+              icon={<Network size={19} />}
+              title="System Design"
+              items={[
+                "Scalable systems",
+                "Service boundaries",
+                "API architecture",
+                "Caching strategies",
+              ]}
+            />
 
-                  <div>
-                    <p className="font-mono text-xs text-cyan-400">
-                      MICROCKS
-                    </p>
-                    <p className="text-xs text-white/35">
-                      Open-source contribution
-                    </p>
-                  </div>
-                </div>
+            <EngineeringCard
+              icon={<Layers3 size={19} />}
+              title="Low-Level Design"
+              items={[
+                "SOLID principles",
+                "Design patterns",
+                "OOP",
+                "Maintainable code",
+              ]}
+            />
 
-                <h3 className="mt-7 text-2xl font-semibold">
-                  Migrate webapp ITs to RestTestClient
-                </h3>
+            <EngineeringCard
+              icon={<Database size={19} />}
+              title="Data & Performance"
+              items={[
+                "SQL optimization",
+                "JPA/Hibernate",
+                "Redis caching",
+                "Connection pooling",
+              ]}
+            />
 
-                <p className="mt-4 max-w-2xl leading-7 text-white/50">
-                  Migrated Microcks webapp integration tests from
-                  TestRestTemplate to RestTestClient for Spring Boot 4.0.7
-                  compatibility, while preserving existing assertions, SSE
-                  behavior and redirect handling.
-                </p>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {[
-                    "Spring Boot 4.0.7",
-                    "RestTestClient",
-                    "Integration Testing",
-                  ].map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/10 px-3 py-1.5 font-mono text-xs text-white/45"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href="https://github.com/microcks/microcks/pull/2275"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-black"
-                  >
-                    View Pull Request
-                    <ArrowUpRight size={15} />
-                  </a>
-
-                  <a
-                    href="https://github.com/sudhir-tech/microcks"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm text-white/70"
-                  >
-                    Repository
-                    <Code2 size={15} />
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center border-t border-white/10 p-7 lg:border-l lg:border-t-0">
-                <div>
-                  <p className="font-mono text-5xl font-bold text-white/90">
-                    #2275
-                  </p>
-
-                  <p className="mt-2 text-sm text-white/40">
-                    Pull Request
-                  </p>
-
-                  <p className="mt-6 text-sm leading-6 text-white/40">
-                    A contribution to a real open-source project.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <EngineeringCard
+              icon={<Code2 size={19} />}
+              title="Problem Solving"
+              items={[
+                "Data structures",
+                "Algorithms",
+                "LeetCode",
+                "Scaler",
+              ]}
+            />
           </div>
         </div>
       </section>
 
       {/* Skills */}
-      <section
-        id="skills"
-        className="mx-auto max-w-6xl px-5 py-24"
-      >
+      <section id="skills" className="mx-auto max-w-6xl px-5 py-28">
         <SectionHeading
           eyebrow="05 / SKILLS"
-          title="My engineering toolkit."
+          title="The engineering toolkit."
+          description="Technologies, concepts and tools I use or actively develop expertise in."
         />
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {Object.entries(skills).map(([category, items]) => (
             <div
               key={category}
-              className="rounded-2xl border border-white/10 bg-white/[0.025] p-5"
+              className="group rounded-2xl border border-white/[0.08] bg-white/[0.018] p-6 transition hover:border-cyan-400/20 hover:bg-white/[0.025]"
             >
               <h3 className="font-mono text-sm text-cyan-400">
                 {category}
               </h3>
 
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-2">
                 {items.map((item) => (
                   <span
                     key={item}
-                    className="rounded-lg border border-white/10 px-2.5 py-1.5 text-xs text-white/55"
+                    className="rounded-lg border border-white/[0.08] px-2.5 py-1.5 text-xs text-white/50 transition group-hover:border-white/10 group-hover:text-white/60"
                   >
                     {item}
                   </span>
@@ -598,53 +757,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Achievements */}
-      <section className="border-y border-white/10 bg-white/[0.015]">
-        <div className="mx-auto max-w-6xl px-5 py-24">
+      {/* Learning / achievements */}
+      <section className="border-y border-white/[0.08] bg-white/[0.012]">
+        <div className="mx-auto max-w-6xl px-5 py-28">
           <SectionHeading
-            eyebrow="06 / ACHIEVEMENTS"
-            title="Always learning."
+            eyebrow="06 / LEARNING"
+            title="Always sharpening the fundamentals."
+            description="Continuous learning through structured study, coding practice and hands-on engineering."
           />
 
-          <div className="grid gap-5 md:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-7">
-              <p className="font-mono text-4xl font-bold text-cyan-400">
-                500+
-              </p>
+          <div className="grid gap-5 md:grid-cols-3">
+            <StatCard
+              value="500+"
+              title="DSA Problems"
+              text="Consistent problem-solving practice across LeetCode and Scaler."
+            />
 
-              <h3 className="mt-3 text-xl font-semibold">
-                DSA Problems Solved
-              </h3>
+            <StatCard
+              value="3+"
+              title="Years Experience"
+              text="Professional experience working with Java and enterprise backend applications."
+            />
 
-              <p className="mt-2 text-sm leading-6 text-white/45">
-                Problems solved across LeetCode and Scaler.
-              </p>
-            </div>
+            <StatCard
+              value="MS"
+              title="Computer Science"
+              text="Currently pursuing a Master's in Computer Science through Scaler × Woolf University."
+            />
+          </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-7">
-              <p className="text-2xl">🏆</p>
+          <div className="mt-5 rounded-2xl border border-white/[0.08] bg-white/[0.018] p-7">
+            <div className="flex items-start gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-400/[0.06] text-cyan-400">
+                <GraduationCap size={20} />
+              </div>
 
-              <h3 className="mt-3 text-xl font-semibold">
-                Certifications
-              </h3>
+              <div>
+                <h3 className="text-lg font-semibold">
+                  Certifications & Learning
+                </h3>
 
-              <ul className="mt-4 space-y-2 text-sm text-white/45">
-                <li>
-                  Advanced Data Structures & Algorithms — Scaler
-                </li>
-                <li>SQL Certification — Scaler</li>
-                <li>Generative AI Certification</li>
-              </ul>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {[
+                    "Advanced Data Structures & Algorithms — Scaler",
+                    "SQL Certification — Scaler",
+                    "Generative AI Certification",
+                    "Master's in Computer Science",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-white/45"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Education */}
-      <section className="mx-auto max-w-6xl px-5 py-24">
+      <section className="mx-auto max-w-6xl px-5 py-28">
         <SectionHeading
           eyebrow="07 / EDUCATION"
-          title="Learning never stops."
+          title="Foundations that keep growing."
         />
 
         <div className="space-y-4">
@@ -669,59 +847,65 @@ export default function Home() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-5 py-24">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.025] p-8 text-center md:p-14">
-            <p className="font-mono text-xs text-cyan-400">
-              08 / CONTACT
-            </p>
+      <section id="contact" className="border-t border-white/[0.08]">
+        <div className="mx-auto max-w-6xl px-5 py-28">
+          <div className="relative overflow-hidden rounded-3xl border border-cyan-400/15 bg-cyan-400/[0.025] p-8 text-center md:p-16">
+            <div className="absolute left-1/2 top-0 h-48 w-96 -translate-x-1/2 rounded-full bg-cyan-400/[0.05] blur-3xl" />
 
-            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              Let&apos;s build something.
-            </h2>
+            <div className="relative">
+              <p className="font-mono text-xs tracking-wider text-cyan-400">
+                08 / CONTACT
+              </p>
 
-            <p className="mx-auto mt-5 max-w-xl leading-7 text-white/45">
-              I&apos;m interested in Java backend and software engineering
-              opportunities where I can build, learn and contribute.
-            </p>
+              <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+                Let&apos;s build something.
+              </h2>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a
-                href="mailto:sudhirsahoo523@gmail.com"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black hover:bg-cyan-300"
-              >
-                <Mail size={16} />
-                Email Me
-              </a>
+              <p className="mx-auto mt-5 max-w-xl leading-7 text-white/45">
+                I&apos;m interested in Java backend, software engineering and
+                product-focused opportunities where I can solve meaningful
+                problems and keep growing as an engineer.
+              </p>
 
-              <a
-                href="https://github.com/sudhir-tech"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm text-white/70 hover:text-white"
-              >
-                <Code2 size={16} />
-                GitHub
-              </a>
-            </div>
+              <div className="mt-9 flex flex-wrap justify-center gap-3">
+                <a
+                  href="mailto:sudhirsahoo523@gmail.com"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-300"
+                >
+                  <Mail size={16} />
+                  Get in touch
+                  <ArrowRight size={15} />
+                </a>
 
-            <div className="mt-7 flex flex-wrap justify-center gap-5 text-xs text-white/30">
-              <span className="inline-flex items-center gap-1.5">
-                <Mail size={13} />
-                sudhirsahoo523@gmail.com
-              </span>
+                <a
+                  href="https://github.com/sudhir-tech"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/70 transition hover:border-white/30 hover:text-white"
+                >
+                  <Code2 size={16} />
+                  GitHub
+                </a>
+              </div>
 
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin size={13} />
-                India
-              </span>
+              <div className="mt-8 flex flex-wrap justify-center gap-5 text-xs text-white/30">
+                <span className="inline-flex items-center gap-1.5">
+                  <Mail size={13} />
+                  sudhirsahoo523@gmail.com
+                </span>
+
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin size={13} />
+                  India
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10">
+      <footer className="border-t border-white/[0.08]">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-7 text-xs text-white/30 sm:flex-row">
           <p>© {new Date().getFullYear()} Sudhir Sahoo</p>
 
@@ -730,11 +914,15 @@ export default function Home() {
               href="https://github.com/sudhir-tech"
               target="_blank"
               rel="noreferrer"
+              className="transition hover:text-white"
             >
               GitHub
             </a>
 
-            <a href="mailto:sudhirsahoo523@gmail.com">
+            <a
+              href="mailto:sudhirsahoo523@gmail.com"
+              className="transition hover:text-white"
+            >
               Email
             </a>
           </div>
@@ -744,15 +932,40 @@ export default function Home() {
   );
 }
 
+function TerminalLine({
+  command,
+  value,
+  accent = false,
+}: {
+  command: string;
+  value: string;
+  accent?: boolean;
+}) {
+  return (
+    <div>
+      <p>
+        <span className="text-cyan-400">$</span>{" "}
+        <span className="text-white/60">{command}</span>
+      </p>
+
+      <p className={accent ? "pl-5 text-cyan-300" : "pl-5 text-white/35"}>
+        {value}
+      </p>
+    </div>
+  );
+}
+
 function SectionHeading({
   eyebrow,
   title,
+  description,
 }: {
   eyebrow: string;
   title: string;
+  description?: string;
 }) {
   return (
-    <div className="mb-12">
+    <div className="mb-12 max-w-3xl">
       <p className="font-mono text-xs tracking-wider text-cyan-400">
         {eyebrow}
       </p>
@@ -760,6 +973,12 @@ function SectionHeading({
       <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
         {title}
       </h2>
+
+      {description && (
+        <p className="mt-4 max-w-2xl leading-7 text-white/40">
+          {description}
+        </p>
+      )}
     </div>
   );
 }
@@ -769,17 +988,66 @@ function InfoCard({
   title,
   text,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   text: string;
 }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.025] p-4">
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-5 transition hover:border-cyan-400/20">
       <div className="text-cyan-400">{icon}</div>
 
-      <p className="mt-4 text-sm font-semibold">{title}</p>
+      <p className="mt-5 text-sm font-semibold">{title}</p>
 
-      <p className="mt-1 text-xs text-white/40">{text}</p>
+      <p className="mt-2 text-xs leading-5 text-white/35">{text}</p>
+    </div>
+  );
+}
+
+function EngineeringCard({
+  icon,
+  title,
+  items,
+}: {
+  icon: ReactNode;
+  title: string;
+  items: string[];
+}) {
+  return (
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-6">
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/[0.06] text-cyan-400">
+        {icon}
+      </div>
+
+      <h3 className="mt-5 font-semibold">{title}</h3>
+
+      <div className="mt-4 space-y-2">
+        {items.map((item) => (
+          <p key={item} className="text-xs text-white/40">
+            <span className="mr-2 text-cyan-400">→</span>
+            {item}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function StatCard({
+  value,
+  title,
+  text,
+}: {
+  value: string;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/[0.08] bg-white/[0.018] p-7">
+      <p className="font-mono text-4xl font-bold text-cyan-400">{value}</p>
+
+      <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+
+      <p className="mt-2 text-sm leading-6 text-white/40">{text}</p>
     </div>
   );
 }
@@ -794,27 +1062,20 @@ function EducationCard({
   period: string;
 }) {
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.025] p-6 md:flex-row md:items-center md:justify-between">
+    <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.018] p-6 transition hover:border-cyan-400/20 md:flex-row md:items-center md:justify-between">
       <div className="flex gap-4">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.05]">
-          <GraduationCap
-            size={18}
-            className="text-cyan-400"
-          />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.04]">
+          <GraduationCap size={18} className="text-cyan-400" />
         </div>
 
         <div>
           <h3 className="font-semibold">{title}</h3>
 
-          <p className="mt-1 text-sm text-white/40">
-            {school}
-          </p>
+          <p className="mt-1 text-sm text-white/40">{school}</p>
         </div>
       </div>
 
-      <p className="font-mono text-xs text-white/35">
-        {period}
-      </p>
+      <p className="font-mono text-xs text-white/35">{period}</p>
     </div>
   );
 }
