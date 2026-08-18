@@ -14,10 +14,8 @@ import {
   MapPin,
   Menu,
   Network,
-  Server,
   ShieldCheck,
   Sparkles,
-  Terminal,
   X,
   Zap,
 } from "lucide-react";
@@ -308,8 +306,41 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(34,211,238,0.09),transparent_28%),radial-gradient(circle_at_15%_75%,rgba(59,130,246,0.06),transparent_30%)]" />
 
-        <div className="relative mx-auto grid w-full max-w-6xl gap-14 py-24 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
-          <div>
+        {/* Portrait background - cinematic ambient portrait, not a framed/headshot look */}
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 hidden w-[40%] overflow-hidden lg:block"
+          aria-hidden="true"
+        >
+          {/* Large atmospheric cyan glow */}
+          <div className="absolute left-[-12%] top-[42%] h-[680px] w-[680px] -translate-y-1/2 rounded-full bg-cyan-400/[0.075] blur-[125px]" />
+
+          <div className="absolute left-[2%] top-[34%] h-[430px] w-[430px] rounded-full bg-cyan-300/[0.055] blur-[95px]" />
+
+          <div className="absolute left-[12%] top-[55%] h-[320px] w-[320px] rounded-full bg-blue-500/[0.035] blur-[90px]" />
+
+          {/* Oversized portrait — deliberately cropped so it reads as atmosphere, not a passport photo */}
+          <img
+            src="/profile.png"
+            alt=""
+            className="absolute left-[-205px] top-1/2 h-[760px] w-auto max-w-none -translate-y-1/2 opacity-[0.24] mix-blend-screen"
+          />
+
+          {/* Irregular soft light around the subject */}
+          <div className="absolute left-[-170px] top-[14%] h-[700px] w-[540px] rounded-[42%] bg-[radial-gradient(ellipse_at_50%_42%,transparent_28%,rgba(34,211,238,0.09)_48%,transparent_70%)] blur-[30px]" />
+
+          {/* Strong edge fading — removes the rectangular/passport-photo feeling */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_28%_48%,transparent_20%,rgba(5,7,10,0.10)_42%,rgba(5,7,10,0.68)_68%,rgba(5,7,10,1)_88%)]" />
+
+          {/* Fade into the top and bottom of the hero */}
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.48)_0%,transparent_20%,transparent_72%,rgba(5,7,10,0.92)_100%)]" />
+
+          {/* Fade the portrait toward the hero content on the right */}
+          <div className="absolute inset-y-0 right-0 w-[65%] bg-gradient-to-l from-[#05070a] via-[#05070a]/70 to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 py-20 lg:grid-cols-[1.28fr_.72fr] lg:items-center">
+          {/* Left content */}
+          <div className="lg:translate-x-8">
             <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/[0.05] px-3 py-1.5 font-mono text-xs text-cyan-300">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400" />
               JAVA BACKEND DEVELOPER
@@ -323,8 +354,13 @@ export default function Home() {
               </span>
             </h1>
 
+            {/* Software Engineer */}
+            <p className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-cyan-400 sm:text-3xl lg:text-4xl">
+              Software Engineer
+            </p>
+
             {/* Main tagline */}
-            <h2 className="mt-7 max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.04em] text-white/75 sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 max-w-2xl text-2xl font-semibold leading-tight tracking-[-0.035em] text-white/75 sm:text-3xl lg:text-4xl">
               Building Backend Systems{" "}
               <span className="text-cyan-400">That Scale.</span>
             </h2>
@@ -379,12 +415,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Terminal / engineering card */}
-          <div className="relative hidden lg:block">
-            <div className="absolute -inset-8 rounded-full bg-cyan-400/[0.035] blur-3xl" />
+          {/* Smaller terminal / engineering card */}
+          <div className="relative hidden min-h-[420px] translate-x-0 lg:block lg:translate-x-6">
+            <div className="absolute right-[-8%] top-[8%] h-[400px] w-[400px] rounded-full bg-cyan-400/[0.045] blur-3xl" />
 
-            <div className="relative overflow-hidden rounded-2xl border border-white/[0.1] bg-[#0a0e13]/90 p-5 shadow-2xl shadow-black/40">
-              <div className="mb-5 flex items-center gap-2 border-b border-white/[0.08] pb-4">
+            <div className="absolute bottom-2 left-6 right-6 z-20 overflow-hidden rounded-2xl border border-white/[0.1] bg-[#0a0e13]/90 p-4 shadow-2xl shadow-black/50 backdrop-blur-sm">
+              <div className="mb-4 flex items-center gap-2 border-b border-white/[0.08] pb-4">
                 <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
                 <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
@@ -394,13 +430,10 @@ export default function Home() {
                 </span>
               </div>
 
-              <div className="space-y-4 font-mono text-sm">
+              <div className="space-y-3 font-mono text-sm">
                 <TerminalLine command="whoami" value="Sudhir Sahoo" />
 
-                <TerminalLine
-                  command="role"
-                  value="Java Backend Developer"
-                />
+                <TerminalLine command="role" value="Software Engineer" />
 
                 <TerminalLine
                   command="stack"
@@ -423,7 +456,7 @@ export default function Home() {
                   accent
                 />
 
-                <div className="mt-5 border-t border-white/[0.08] pt-5">
+                <div className="mt-4 border-t border-white/[0.08] pt-4">
                   <div className="flex items-center gap-2 text-xs text-white/30">
                     <span className="text-cyan-400">●</span>
                     currently building
