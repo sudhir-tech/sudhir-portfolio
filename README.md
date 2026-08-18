@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sudhir Sahoo — Developer Portfolio
 
-## Getting Started
+A modern, responsive developer portfolio showcasing my experience, projects, technical skills, and journey as a Java Backend Software Engineer.
 
-First, run the development server:
+## 🚀 Live Portfolio
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 **Portfolio:** [Add your Vercel URL here]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 👨‍💻 About
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I'm a Software Engineer with 3+ years of experience in Java backend development, specializing in building reliable and scalable backend applications.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+My primary focus areas include:
 
-## Learn More
+- Java & Spring Boot
+- REST API Development
+- SQL & Database Design
+- System Design & Low-Level Design
+- Data Structures & Algorithms
+- Authentication & API Security
+- Redis & Performance Optimization
+- CI/CD & Software Engineering Practices
 
-To learn more about Next.js, take a look at the following resources:
+Currently pursuing a Master's in Computer Science while continuing to build backend projects and strengthen my software engineering fundamentals.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Backend
+- Java
+- Spring Boot
+- Spring MVC
+- Hibernate / JPA
+- REST APIs
+- Microservices
 
-## Deploy on Vercel
+### Database & Performance
+- MySQL
+- SQL
+- Redis
+- HikariCP
+- Query Optimization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Security
+- Spring Security
+- JWT Authentication
+- Role-Based Authorization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### DevOps & Tools
+- Git
+- GitHub
+- Jenkins
+- SonarQube
+- Docker
+- Maven
+- ELK Stack
+
+### Problem Solving
+- Data Structures & Algorithms
+- Low-Level Design
+- System Design
+- LeetCode
+- Scaler
+
+## 📌 Featured Projects
+
+### ShopEase — E-commerce Backend
+
+A scalable e-commerce backend built with Spring Boot.
+
+**Key features:**
+
+- JWT authentication and role-based authorization
+- User, product, cart and order management
+- JPA/Hibernate persistence
+- Redis caching
+- Pagination and filtering
+- SQL optimization
+- Secure REST APIs
+
+🔗 [View Repository](https://github.com/sudhir-tech/ShopEase)
+
+### E-commerce Backend System
+
+Backend-focused e-commerce application built with Spring Boot, MySQL and JPA.
+
+🔗 [View Repository](https://github.com/sudhir-tech/ecommerce-backend-springboot)
+
+### Library Management System
+
+Spring Boot application for managing books, inventory, issue and return workflows through REST APIs.
+
+🔗 [View Repository](https://github.com/sudhir-tech/Library-management-system)
+
+## 💼 Experience
+
+### DXC Technology
+**Software Engineer — Java**  
+Feb 2022 — Sep 2024
+
+Worked on enterprise Java applications with a focus on backend development, production reliability, debugging, performance optimization and continuous improvement.
+
+### Quotus Software Solutions Pvt. Ltd.
+**Software Trainee**  
+Oct 2020 — Jan 2021
+
+Built foundational experience in Java, SQL, JDBC, OOP and software development practices.
+
+## 🎓 Education
+
+**Master's in Computer Science**  
+Scaler × Woolf University  
+2025 — 2027
+
+**Bachelor's in Electronics and Telecommunication**  
+C.V. Raman Global University  
+2016 — 2020
+
+## 📊 Currently Learning
+
+- System Design
+- Low-Level Design
+- Advanced DSA
+- Scalable Backend Architecture
+- Cloud & DevOps
+
+## 🔗 Connect With Me
+
+- 💼 LinkedIn: https://www.linkedin.com/in/sudhir-sahoo-b649bb156/
+- 💻 GitHub: https://github.com/sudhir-tech
+- 🎓 Scaler: https://www.scaler.com/academy/profile/9814749c2e1b
+
+---
+
+*****
