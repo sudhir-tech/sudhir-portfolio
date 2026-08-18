@@ -5,8 +5,8 @@ import {
   ArrowUpRight,
   BookOpen,
   Boxes,
-  Code2,
   Database,
+  FileText,
   GitBranch,
   GraduationCap,
   Layers3,
@@ -217,6 +217,110 @@ function ShoppingCartIcon() {
   return <Boxes size={22} />;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Brand Icons                                                                 */
+/* -------------------------------------------------------------------------- */
+
+function BrandIcon({
+  brand,
+  size = 20,
+}: {
+  brand: "github" | "linkedin" | "scaler";
+  size?: number;
+}) {
+  /*
+   * LinkedIn uses the uploaded local image from:
+   * public/linkedin.png
+   *
+   * This avoids external CDN icons and avoids SVG/filter rendering
+   * differences across browsers.
+   */
+  if (brand === "linkedin") {
+    return (
+      <span
+        className="inline-flex shrink-0 items-center justify-center overflow-hidden rounded-[3px]"
+        style={{
+          width: size,
+          height: size,
+        }}
+        aria-hidden="true"
+      >
+        <img
+          src="/linkedin.png"
+          alt=""
+          className="h-full w-full object-contain"
+        />
+      </span>
+    );
+  }
+
+  const iconSources = {
+    github: "https://cdn.simpleicons.org/github/ffffff",
+    scaler: "https://www.scaler.com/favicon.ico",
+  };
+
+  return (
+    <span
+      className="relative inline-flex shrink-0 items-center justify-center"
+      style={{
+        width: size,
+        height: size,
+      }}
+      aria-hidden="true"
+    >
+      <img
+        src={iconSources[brand]}
+        alt=""
+        className="h-full w-full object-contain opacity-80 transition duration-200 group-hover:opacity-100"
+      />
+    </span>
+  );
+}
+
+function SocialIconButton({
+  href,
+  brand,
+  label,
+}: {
+  href: string;
+  brand: "github" | "linkedin" | "scaler";
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={label}
+      className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/60 transition duration-200 hover:border-white/20 hover:text-white"
+    >
+      <BrandIcon brand={brand} size={18} />
+    </a>
+  );
+}
+
+function SocialButton({
+  href,
+  brand,
+  label,
+}: {
+  href: string;
+  brand: "github" | "linkedin" | "scaler";
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="group inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/75 transition duration-200 hover:border-white/25 hover:text-white"
+    >
+      <BrandIcon brand={brand} size={18} />
+      {label}
+    </a>
+  );
+}
+
 export default function Home() {
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -261,15 +365,25 @@ export default function Home() {
               </a>
             ))}
 
-            <a
-              href="https://github.com/sudhir-tech"
-              target="_blank"
-              rel="noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/55 transition hover:border-cyan-400/40 hover:text-cyan-400"
-              aria-label="GitHub"
-            >
-              <Code2 size={16} />
-            </a>
+            <div className="ml-1 flex items-center gap-2">
+              <SocialIconButton
+                href="https://github.com/sudhir-tech"
+                brand="github"
+                label="GitHub"
+              />
+
+              <SocialIconButton
+                href="https://www.linkedin.com/in/sudhir-sahoo-b649bb156/"
+                brand="linkedin"
+                label="LinkedIn"
+              />
+
+              <SocialIconButton
+                href="https://www.scaler.com/academy/profile/9814749c2e1b"
+                brand="scaler"
+                label="Scaler Profile"
+              />
+            </div>
           </div>
 
           <button
@@ -294,6 +408,26 @@ export default function Home() {
                   {label}
                 </a>
               ))}
+
+              <div className="flex items-center gap-3 border-t border-white/[0.08] pt-5">
+                <SocialIconButton
+                  href="https://github.com/sudhir-tech"
+                  brand="github"
+                  label="GitHub"
+                />
+
+                <SocialIconButton
+                  href="https://www.linkedin.com/in/sudhir-sahoo-b649bb156/"
+                  brand="linkedin"
+                  label="LinkedIn"
+                />
+
+                <SocialIconButton
+                  href="https://www.scaler.com/academy/profile/9814749c2e1b"
+                  brand="scaler"
+                  label="Scaler Profile"
+                />
+              </div>
             </div>
           </div>
         )}
@@ -306,35 +440,29 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(34,211,238,0.09),transparent_28%),radial-gradient(circle_at_15%_75%,rgba(59,130,246,0.06),transparent_30%)]" />
 
-        {/* Portrait background - cinematic ambient portrait, not a framed/headshot look */}
+        {/* Portrait background */}
         <div
           className="pointer-events-none absolute inset-y-0 left-0 hidden w-[40%] overflow-hidden lg:block"
           aria-hidden="true"
         >
-          {/* Large atmospheric cyan glow */}
           <div className="absolute left-[-12%] top-[42%] h-[680px] w-[680px] -translate-y-1/2 rounded-full bg-cyan-400/[0.075] blur-[125px]" />
 
           <div className="absolute left-[2%] top-[34%] h-[430px] w-[430px] rounded-full bg-cyan-300/[0.055] blur-[95px]" />
 
           <div className="absolute left-[12%] top-[55%] h-[320px] w-[320px] rounded-full bg-blue-500/[0.035] blur-[90px]" />
 
-          {/* Oversized portrait — deliberately cropped so it reads as atmosphere, not a passport photo */}
           <img
             src="/profile.png"
             alt=""
             className="absolute left-[-205px] top-1/2 h-[760px] w-auto max-w-none -translate-y-1/2 opacity-[0.24] mix-blend-screen"
           />
 
-          {/* Irregular soft light around the subject */}
           <div className="absolute left-[-170px] top-[14%] h-[700px] w-[540px] rounded-[42%] bg-[radial-gradient(ellipse_at_50%_42%,transparent_28%,rgba(34,211,238,0.09)_48%,transparent_70%)] blur-[30px]" />
 
-          {/* Strong edge fading — removes the rectangular/passport-photo feeling */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_28%_48%,transparent_20%,rgba(5,7,10,0.10)_42%,rgba(5,7,10,0.68)_68%,rgba(5,7,10,1)_88%)]" />
 
-          {/* Fade into the top and bottom of the hero */}
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.48)_0%,transparent_20%,transparent_72%,rgba(5,7,10,0.92)_100%)]" />
 
-          {/* Fade the portrait toward the hero content on the right */}
           <div className="absolute inset-y-0 right-0 w-[65%] bg-gradient-to-l from-[#05070a] via-[#05070a]/70 to-transparent" />
         </div>
 
@@ -346,7 +474,6 @@ export default function Home() {
               JAVA BACKEND DEVELOPER
             </div>
 
-            {/* Name */}
             <h1 className="max-w-4xl text-5xl font-bold leading-[0.95] tracking-[-0.06em] sm:text-6xl lg:text-8xl">
               <span className="text-white">Sudhir</span>{" "}
               <span className="bg-gradient-to-r from-white via-white/75 to-white/30 bg-clip-text text-transparent">
@@ -354,12 +481,10 @@ export default function Home() {
               </span>
             </h1>
 
-            {/* Software Engineer */}
             <p className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-cyan-400 sm:text-3xl lg:text-4xl">
               Software Engineer
             </p>
 
-            {/* Main tagline */}
             <h2 className="mt-5 max-w-2xl text-2xl font-semibold leading-tight tracking-[-0.035em] text-white/75 sm:text-3xl lg:text-4xl">
               Building Backend Systems{" "}
               <span className="text-cyan-400">That Scale.</span>
@@ -371,7 +496,9 @@ export default function Home() {
               system design and performance-focused engineering.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            {/* Hero actions */}
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              {/* 1. Explore Projects */}
               <a
                 href="#projects"
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-300"
@@ -383,14 +510,40 @@ export default function Home() {
                 />
               </a>
 
-              <a
+              {/* 2. GitHub */}
+              <SocialButton
                 href="https://github.com/sudhir-tech"
+                brand="github"
+                label="GitHub"
+              />
+
+              {/* 3. LinkedIn */}
+              <SocialButton
+                href="https://www.linkedin.com/in/sudhir-sahoo-b649bb156/"
+                brand="linkedin"
+                label="LinkedIn"
+              />
+
+              {/* 4. Scaler Profile */}
+              <SocialButton
+                href="https://www.scaler.com/academy/profile/9814749c2e1b"
+                brand="scaler"
+                label="Scaler Profile"
+              />
+
+              {/* 5. Resume - intentionally last */}
+              <a
+                href="/Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/75 transition hover:border-cyan-400/40 hover:text-white"
+                className="group inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/[0.05] px-5 py-3 text-sm font-semibold text-cyan-300 transition hover:border-cyan-400/60 hover:bg-cyan-400/[0.1] hover:text-cyan-200"
               >
-                <Code2 size={16} />
-                GitHub
+                <FileText size={17} />
+                Resume
+                <ArrowUpRight
+                  size={15}
+                  className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
               </a>
             </div>
 
@@ -415,7 +568,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Smaller terminal / engineering card */}
+          {/* Terminal / engineering card */}
           <div className="relative hidden min-h-[420px] translate-x-0 lg:block lg:translate-x-6">
             <div className="absolute right-[-8%] top-[8%] h-[400px] w-[400px] rounded-full bg-cyan-400/[0.045] blur-3xl" />
 
@@ -744,7 +897,7 @@ export default function Home() {
             />
 
             <EngineeringCard
-              icon={<Code2 size={19} />}
+              icon={<FileText size={19} />}
               title="Problem Solving"
               items={[
                 "Data structures",
@@ -901,6 +1054,43 @@ export default function Home() {
               </p>
 
               <div className="mt-9 flex flex-wrap justify-center gap-3">
+                {/* GitHub */}
+                <SocialButton
+                  href="https://github.com/sudhir-tech"
+                  brand="github"
+                  label="GitHub"
+                />
+
+                {/* LinkedIn */}
+                <SocialButton
+                  href="https://www.linkedin.com/in/sudhir-sahoo-b649bb156/"
+                  brand="linkedin"
+                  label="LinkedIn"
+                />
+
+                {/* Scaler */}
+                <SocialButton
+                  href="https://www.scaler.com/academy/profile/9814749c2e1b"
+                  brand="scaler"
+                  label="Scaler Profile"
+                />
+
+                {/* Resume - last */}
+                <a
+                  href="/Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/[0.05] px-5 py-3 text-sm font-semibold text-cyan-300 transition hover:border-cyan-400/60 hover:bg-cyan-400/[0.1] hover:text-cyan-200"
+                >
+                  <FileText size={16} />
+                  Resume
+                  <ArrowUpRight
+                    size={15}
+                    className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
+
+                {/* Email */}
                 <a
                   href="mailto:sudhirsahoo523@gmail.com"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-300"
@@ -908,16 +1098,6 @@ export default function Home() {
                   <Mail size={16} />
                   Get in touch
                   <ArrowRight size={15} />
-                </a>
-
-                <a
-                  href="https://github.com/sudhir-tech"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/70 transition hover:border-white/30 hover:text-white"
-                >
-                  <Code2 size={16} />
-                  GitHub
                 </a>
               </div>
 
@@ -950,6 +1130,33 @@ export default function Home() {
               className="transition hover:text-white"
             >
               GitHub
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/sudhir-sahoo-b649bb156/"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-white"
+            >
+              LinkedIn
+            </a>
+
+            <a
+              href="https://www.scaler.com/academy/profile/9814749c2e1b"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-white"
+            >
+              Scaler
+            </a>
+
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="transition hover:text-white"
+            >
+              Resume
             </a>
 
             <a
