@@ -218,7 +218,7 @@ function ShoppingCartIcon() {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Brand Icons                                                                 */
+/* Brand Icons                                                                */
 /* -------------------------------------------------------------------------- */
 
 function BrandIcon({
@@ -228,13 +228,6 @@ function BrandIcon({
   brand: "github" | "linkedin" | "scaler";
   size?: number;
 }) {
-  /*
-   * LinkedIn uses the uploaded local image from:
-   * public/linkedin.png
-   *
-   * This avoids external CDN icons and avoids SVG/filter rendering
-   * differences across browsers.
-   */
   if (brand === "linkedin") {
     return (
       <span
@@ -440,7 +433,9 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_30%,rgba(34,211,238,0.09),transparent_28%),radial-gradient(circle_at_15%_75%,rgba(59,130,246,0.06),transparent_30%)]" />
 
-        {/* Portrait background */}
+        {/* ------------------------------------------------------------------ */}
+        {/* Desktop Portrait Background                                        */}
+        {/* ------------------------------------------------------------------ */}
         <div
           className="pointer-events-none absolute inset-y-0 left-0 hidden w-[40%] overflow-hidden lg:block"
           aria-hidden="true"
@@ -464,6 +459,36 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.48)_0%,transparent_20%,transparent_72%,rgba(5,7,10,0.92)_100%)]" />
 
           <div className="absolute inset-y-0 right-0 w-[65%] bg-gradient-to-l from-[#05070a] via-[#05070a]/70 to-transparent" />
+        </div>
+
+        {/* ------------------------------------------------------------------ */}
+        {/* Mobile Portrait Background                                         */}
+        {/* ------------------------------------------------------------------ */}
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden"
+          aria-hidden="true"
+        >
+          {/* Main cyan glow */}
+          <div className="absolute left-[-15%] top-[18%] h-[480px] w-[480px] rounded-full bg-cyan-400/[0.065] blur-[110px]" />
+
+          {/* Secondary blue glow */}
+          <div className="absolute right-[-15%] top-[38%] h-[380px] w-[380px] rounded-full bg-blue-500/[0.035] blur-[100px]" />
+
+          {/* Mobile portrait - slightly left of center */}
+          <img
+            src="/profile.png"
+            alt=""
+            className="absolute left-[-55px] top-[40%] h-[650px] w-auto max-w-none -translate-y-1/2 opacity-[0.18] mix-blend-screen"
+          />
+
+          {/* Balanced portrait fade */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_38%_42%,transparent_18%,rgba(5,7,10,0.10)_40%,rgba(5,7,10,0.32)_65%,rgba(5,7,10,0.62)_100%)]" />
+
+          {/* Top and bottom fade */}
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,7,10,0.48)_0%,rgba(5,7,10,0.04)_25%,rgba(5,7,10,0.14)_55%,rgba(5,7,10,0.84)_100%)]" />
+
+          {/* Soft right-side fade - reduced so the right side stays visible */}
+          <div className="absolute inset-y-0 right-0 w-[18%] bg-gradient-to-l from-[#05070a]/80 via-[#05070a]/25 to-transparent" />
         </div>
 
         <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-10 py-20 lg:grid-cols-[1.28fr_.72fr] lg:items-center">
@@ -498,7 +523,6 @@ export default function Home() {
 
             {/* Hero actions */}
             <div className="mt-9 flex flex-wrap items-center gap-3">
-              {/* 1. Explore Projects */}
               <a
                 href="#projects"
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-300"
@@ -510,28 +534,24 @@ export default function Home() {
                 />
               </a>
 
-              {/* 2. GitHub */}
               <SocialButton
                 href="https://github.com/sudhir-tech"
                 brand="github"
                 label="GitHub"
               />
 
-              {/* 3. LinkedIn */}
               <SocialButton
                 href="https://www.linkedin.com/in/sudhir-sahoo-b649bb156/"
                 brand="linkedin"
                 label="LinkedIn"
               />
 
-              {/* 4. Scaler Profile */}
               <SocialButton
                 href="https://www.scaler.com/academy/profile/9814749c2e1b"
                 brand="scaler"
                 label="Scaler Profile"
               />
 
-              {/* 5. Resume - intentionally last */}
               <a
                 href="/Resume.pdf"
                 target="_blank"
@@ -1054,28 +1074,24 @@ export default function Home() {
               </p>
 
               <div className="mt-9 flex flex-wrap justify-center gap-3">
-                {/* GitHub */}
                 <SocialButton
                   href="https://github.com/sudhir-tech"
                   brand="github"
                   label="GitHub"
                 />
 
-                {/* LinkedIn */}
                 <SocialButton
                   href="https://www.linkedin.com/in/sudhir-sahoo-b649bb156/"
                   brand="linkedin"
                   label="LinkedIn"
                 />
 
-                {/* Scaler */}
                 <SocialButton
                   href="https://www.scaler.com/academy/profile/9814749c2e1b"
                   brand="scaler"
                   label="Scaler Profile"
                 />
 
-                {/* Resume - last */}
                 <a
                   href="/Resume.pdf"
                   target="_blank"
@@ -1090,7 +1106,6 @@ export default function Home() {
                   />
                 </a>
 
-                {/* Email */}
                 <a
                   href="mailto:sudhirsahoo523@gmail.com"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-cyan-300"
